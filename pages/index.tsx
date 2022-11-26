@@ -4,8 +4,6 @@ import Image from "next/image"
 import { useState } from "react"
 import styles from "../styles/Home.module.css"
 
-// create a tic tac toe board
-
 export default function Home() {
 	const [options, setOptions]: any = useState(new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]))
 	const [board, setBoard]: any = useState([
@@ -29,25 +27,53 @@ export default function Home() {
 		const newBoard: any = [...board]
 		newBoard[position[0]][position[1]] = option
 		setBoard(newBoard)
+
+		// ALl the possible winning combinations and  makes sure the row is complete
 		let a = board[0][0] + board[0][1] + board[0][2]
+		if (!(board[0][0] && board[0][1] && board[0][2])) {
+			a = 0
+		}
+
 		let b = board[1][0] + board[1][1] + board[1][2]
+		if (!(board[1][0] && board[1][1] && board[1][2])) {
+			b = 0
+		}
 		let c = board[2][0] + board[2][1] + board[2][2]
+		if (!(board[2][0] && board[2][1] && board[2][2])) {
+			c = 0
+		}
 
 		let d = board[0][0] + board[1][0] + board[2][0]
+		if (!(board[0][0] && board[1][0] && board[2][0])) {
+			d = 0
+		}
+
 		let e = board[0][1] + board[1][1] + board[2][1]
+		if (!(board[0][1] && board[1][1] && board[2][1])) {
+			e = 0
+		}
 		let f = board[0][3] + board[1][3] + board[2][3]
+		if (!(board[0][3] && board[1][3] && board[2][3])) {
+			f = 0
+		}
 
 		let g = board[0][0] + board[1][1] + board[2][2]
+		if (!(board[0][0] && board[1][1] && board[2][2])) {
+			g = 0
+		}
 		let h = board[0][2] + board[1][1] + board[2][0]
+		if (!(board[0][2] && board[1][1] && board[2][0])) {
+			h = 0
+		}
 
 		//The code below defines how player 1 wins
-		if (a === 16 || b === 16 || c === 16 || d === 16 || e === 16 || f === 16 || g === 16 || h === 16) {
+		if (a || b || c || d || e || f || g || h === 16) {
 			setResult("Player 1")
 			console.log("Player 1 wins")
 		}
 
 		//The code below defines how player 2 wins
-		if (a === 15 || b === 15 || c === 15 || d === 15 || e === 15 || f === 15 || g === 15 || h === 15) {
+		if (a || b || c || d || e || f || g || h === 15) {
 			setResult("Player 2")
 			console.log("Player 2 wins")
 		}
