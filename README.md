@@ -1,1 +1,1 @@
-A Tic Tac esque math game.
+TacTicTotal
