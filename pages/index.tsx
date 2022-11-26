@@ -1,34 +1,132 @@
 import { Box, Button, Container, Typography } from "@mui/material"
 import Head from "next/head"
 import Image from "next/image"
+import { useState } from "react"
 import styles from "../styles/Home.module.css"
 
 // create a tic tac toe board
-const board = [
-	[1, null, null],
-	[null, 5, null],
-	[null, null, null],
-]
 
 export default function Home() {
+	const [options, setOptions]: any = useState(new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+	const [board, setBoard]: any = useState([
+		[null, null, null],
+		[null, null, null],
+		[null, null, null],
+	])
+	const [position, setPosition] = useState([0, 0])
+	const [showOptions, setShowOptions] = useState(false)
+	const pickBox = (j: number, i: number) => {
+		setPosition([j, i])
+		console.log(j, i)
+		setShowOptions(true)
+	}
+	const [result, setResult] = useState("")
+
+	const selectOption = (option: number) => {
+		options.delete(option)
+		setOptions(new Set(options))
+		setShowOptions(false)
+		const newBoard: any = [...board]
+		newBoard[position[0]][position[1]] = option
+		setBoard(newBoard)
+		let a = board[0][0] + board[0][1] + board[0][2]
+		let b = board[1][0] + board[1][1] + board[1][2]
+		let c = board[2][0] + board[2][1] + board[2][2]
+
+		let d = board[0][0] + board[1][0] + board[2][0]
+		let e = board[0][1] + board[1][1] + board[2][1]
+		let f = board[0][3] + board[1][3] + board[2][3]
+
+		let g = board[0][0] + board[1][1] + board[2][2]
+		let h = board[0][2] + board[1][1] + board[2][0]
+
+		//The code below defines how player 1 wins
+		if (a === 16 || b === 16 || c === 16 || d === 16 || e === 16 || f === 16 || g === 16 || h === 16) {
+			setResult("Player 1")
+			console.log("Player 1 wins")
+		}
+
+		//The code below defines how player 2 wins
+		if (a === 15 || b === 15 || c === 15 || d === 15 || e === 15 || f === 15 || g === 15 || h === 15) {
+			setResult("Player 2")
+			console.log("Player 2 wins")
+		}
+		if (options.size === 0 && result !== "") {
+			setResult("Draw")
+		}
+	}
+
+	const resetGame = () => {
+		setOptions(new Set([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+		setBoard([
+			[null, null, null],
+			[null, null, null],
+			[null, null, null],
+		])
+		setPosition([0, 0])
+		setShowOptions(false)
+		setResult("")
+	}
+
 	return (
 		<Container>
 			<Box>
 				<Typography textAlign={"center"} variant="h1">
-					Math Tic Tac Toe
+					TacTic Total
 				</Typography>
 			</Box>
-			<Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" sx={{ minHeight: "100vh" }}>
+
+			<Box display="flex" flexDirection="column" alignItems="space-around" justifyContent="center" sx={{ minHeight: "100vh" }}>
+				{result === "" ? (
+					options.size > 0 &&
+					(showOptions ? (
+						<Box display="flex" flexDirection="row" alignItems="center" justifyContent="center">
+							{[...options].map((option) => (
+								<Button onClick={() => selectOption(option)} key={option} variant="contained" color="primary" sx={{ m: 1 }}>
+									{option}
+								</Button>
+							))}
+						</Box>
+					) : options.size % 2 === 0 ? (
+						<Typography textAlign={"center"} variant="h2">
+							Player 2's turn
+						</Typography>
+					) : (
+						<Typography textAlign={"center"} variant="h2">
+							Player 1's Turn
+						</Typography>
+					))
+				) : (
+					<Box
+						sx={{
+							display: "flex",
+							flexDirection: "column",
+							alignItems: "center",
+						}}>
+						<Typography textAlign={"center"} variant="h2">
+							{result} wins
+						</Typography>
+						<Button onClick={resetGame} color="warning" variant="contained" size="large" sx={{ margin: "4px" }}>
+							Restart Game
+						</Button>
+					</Box>
+				)}
+
 				<Box display="flex" flexDirection="row" alignItems="center" justifyContent="center">
-					{board.map((row, j) => (
-						<Box margin={1} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-							{row.map((col, i) =>
+					{board.map((row: any, j: any) => (
+						<Box key={j} margin={1} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
+							{row.map((col: any, i: any) =>
 								col ? (
-									<Button variant="contained" size="large" sx={{ width: "100px", height: "100px", margin: "4px" }}>
+									<Button key={i} variant="contained" size="large" sx={{ width: "100px", height: "100px", margin: "4px" }}>
 										{col}
 									</Button>
 								) : (
-									<Button variant="outlined" color="primary" sx={{ width: "100px", height: "100px", margin: "4px" }}>
+									<Button
+										key={i}
+										onClick={() => pickBox(j, i)}
+										variant="outlined"
+										color="primary"
+										sx={{ width: "100px", height: "100px", margin: "4px" }}>
 										{col}
 									</Button>
 								)
