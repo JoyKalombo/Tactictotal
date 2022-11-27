@@ -27,8 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
 	const [copiedPublicToken, setCopiedPublicToken] = useState<boolean>(false)
 	const [beaconConnection, setBeaconConnection] = useState<boolean>(false)
 
-	// Ghostnet Increment/Decrement contract
-
 	const generateQrCode = (): { __html: string } => {
 		const qr = qrcode(0, "L")
 		qr.addData(publicToken || "")
