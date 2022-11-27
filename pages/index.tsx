@@ -78,7 +78,6 @@ export default function Home() {
 		if (tally.has(15) && tally.has(16)) {
 			setResult("Draw")
 		}
-		console.log(options.size)
 		if (options.size === 0 && result === "") {
 			setResult("Draw")
 		}
@@ -98,7 +97,7 @@ export default function Home() {
 
 	return (
 		<Container>
-			<Box display="flex" flexDirection="column" alignItems="space-around" justifyContent="center" sx={{ minHeight: "100vh" }}>
+			<Box display="flex" flexDirection="column" alignItems="space-around" justifyContent="center" sx={{ minHeight: "90vh" }}>
 				{result === "" ? (
 					options.size > 0 &&
 					(showOptions ? (
@@ -143,7 +142,7 @@ export default function Home() {
 										key={i}
 										variant="contained"
 										size="large"
-										sx={{ width: "100px", height: "100px", margin: "4px", outlineColor: "red" }}>
+										sx={{ width: "100px", height: "100px", margin: "4px", outlineColor: "red", fontSize: "20px" }}>
 										{col}
 									</Button>
 								) : (

@@ -125,9 +125,6 @@ export default function App({ Component, pageProps }: AppProps) {
 							<Component {...pageProps} />
 						</div>
 					</div>
-					<div id="footer">
-						<img src="built-with-taquito.png" alt="Built with Taquito" />
-					</div>
 				</Box>
 			</ThemeProvider>
 		)
