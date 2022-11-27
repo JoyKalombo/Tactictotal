@@ -15,7 +15,6 @@ export default function Home() {
 	const [showOptions, setShowOptions] = useState(false)
 	const pickBox = (j: number, i: number) => {
 		setPosition([j, i])
-		console.log(j, i)
 		setShowOptions(true)
 	}
 	const [result, setResult] = useState("")
@@ -69,18 +68,18 @@ export default function Home() {
 		//The code below defines how player 1 wins
 		const tally = new Set([a, b, c, d, e, f, g, h])
 
-		if (tally.has(15) && !tally.has(16)) {
-			setResult("Player 1 wins")
+		if (tally.has(16) && !tally.has(15)) {
+			setResult("Player 1")
 		}
 
-		if (tally.has(16) && !tally.has(15)) {
-			setResult("Player 2 wins")
+		if (tally.has(15) && !tally.has(16)) {
+			setResult("Player 2")
 		}
 		if (tally.has(15) && tally.has(16)) {
 			setResult("Draw")
 		}
-
-		if (options.size === 0 && result !== "") {
+		console.log(options.size)
+		if (options.size === 0 && result === "") {
 			setResult("Draw")
 		}
 	}
@@ -99,12 +98,6 @@ export default function Home() {
 
 	return (
 		<Container>
-			<Box>
-				<Typography textAlign={"center"} variant="h1">
-					TacTic Total
-				</Typography>
-			</Box>
-
 			<Box display="flex" flexDirection="column" alignItems="space-around" justifyContent="center" sx={{ minHeight: "100vh" }}>
 				{result === "" ? (
 					options.size > 0 &&
@@ -146,7 +139,11 @@ export default function Home() {
 						<Box key={j} margin={1} display="flex" flexDirection="column" alignItems="center" justifyContent="center">
 							{row.map((col: any, i: any) =>
 								col ? (
-									<Button key={i} variant="contained" size="large" sx={{ width: "100px", height: "100px", margin: "4px" }}>
+									<Button
+										key={i}
+										variant="contained"
+										size="large"
+										sx={{ width: "100px", height: "100px", margin: "4px", outlineColor: "red" }}>
 										{col}
 									</Button>
 								) : (
@@ -154,7 +151,7 @@ export default function Home() {
 										key={i}
 										onClick={() => pickBox(j, i)}
 										variant="outlined"
-										color="primary"
+										color="secondary"
 										sx={{ width: "100px", height: "100px", margin: "4px" }}>
 										{col}
 									</Button>
