@@ -67,16 +67,19 @@ export default function Home() {
 		}
 
 		//The code below defines how player 1 wins
-		if (a || b || c || d || e || f || g || h === 16) {
-			setResult("Player 1")
-			console.log("Player 1 wins")
+		const tally = new Set([a, b, c, d, e, f, g, h])
+
+		if (tally.has(15) && !tally.has(16)) {
+			setResult("Player 1 wins")
 		}
 
-		//The code below defines how player 2 wins
-		if (a || b || c || d || e || f || g || h === 15) {
-			setResult("Player 2")
-			console.log("Player 2 wins")
+		if (tally.has(16) && !tally.has(15)) {
+			setResult("Player 2 wins")
 		}
+		if (tally.has(15) && tally.has(16)) {
+			setResult("Draw")
+		}
+
 		if (options.size === 0 && result !== "") {
 			setResult("Draw")
 		}
@@ -130,7 +133,7 @@ export default function Home() {
 							alignItems: "center",
 						}}>
 						<Typography textAlign={"center"} variant="h2">
-							{result} wins
+							{result === "Draw" ? "Draw" : `${result} wins`}
 						</Typography>
 						<Button onClick={resetGame} color="warning" variant="contained" size="large" sx={{ margin: "4px" }}>
 							Restart Game
