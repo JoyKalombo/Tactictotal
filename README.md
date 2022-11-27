@@ -4,4 +4,4 @@ Players take turns using the numbers 1 to 9 (once) to fill the grid. Player 1's 
 
 We used HTML, CSS, JavaScript, React, NextJS, TypeScript and Taquito for the game and multiplayer capability online.
 
-The Project will use tezos blockchain to store profile stats and will require a suitable wallet
+The Project will use tezos blockchain to store profile stats and will require a suitable wallet to setup your account. 
