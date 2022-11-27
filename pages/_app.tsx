@@ -20,18 +20,14 @@ enum BeaconConnection {
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [Tezos, setTezos] = useState<TezosToolkit>(new TezosToolkit("https://ghostnet.ecadinfra.com"))
-	const [contract, setContract] = useState<any>(undefined)
 	const [publicToken, setPublicToken] = useState<string | null>(null)
 	const [wallet, setWallet] = useState<any>(null)
 	const [userAddress, setUserAddress] = useState<string>("")
 	const [userBalance, setUserBalance] = useState<number>(0)
-	const [storage, setStorage] = useState<number>(0)
 	const [copiedPublicToken, setCopiedPublicToken] = useState<boolean>(false)
 	const [beaconConnection, setBeaconConnection] = useState<boolean>(false)
-	const [activeTab, setActiveTab] = useState<string>("transfer")
 
 	// Ghostnet Increment/Decrement contract
-	const contractAddress: string = "KT1QMGSLynvwwSfGbaiJ8gzWHibTCweCGcu8"
 
 	const generateQrCode = (): { __html: string } => {
 		const qr = qrcode(0, "L")
@@ -146,13 +142,10 @@ export default function App({ Component, pageProps }: AppProps) {
 
 						<ConnectButton
 							Tezos={Tezos}
-							setContract={setContract}
 							setPublicToken={setPublicToken}
 							setWallet={setWallet}
 							setUserAddress={setUserAddress}
 							setUserBalance={setUserBalance}
-							setStorage={setStorage}
-							contractAddress={contractAddress}
 							setBeaconConnection={setBeaconConnection}
 							wallet={wallet}
 						/>
