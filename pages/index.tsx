@@ -2,6 +2,7 @@ import { Box, Button, Container, Typography } from "@mui/material"
 import Head from "next/head"
 import Image from "next/image"
 import { useState } from "react"
+import HelpModal from "../components/HelpModal"
 import styles from "../styles/Home.module.css"
 
 export default function Home() {
@@ -158,6 +159,9 @@ export default function Home() {
 							)}
 						</Box>
 					))}
+				</Box>
+				<Box>
+					<HelpModal />
 				</Box>
 			</Box>
 		</Container>

@@ -149,9 +149,13 @@ export default function App({ Component, pageProps }: AppProps) {
 						/>
 					</AppBar>
 					<Container>
-						<Typography variant="h4" textAlign={"center"}>Welcome to Tactic Total!</Typography>
+						<Typography variant="h4" textAlign={"center"}>
+							Welcome to Tactic Total!
+						</Typography>
 						<br></br>
-						<Typography variant="h5" textAlign={"left"}>How to play:</Typography>
+						<Typography variant="h5" textAlign={"left"}>
+							How to play:
+						</Typography>
 
 						<Typography textAlign={"left"}>Players take turns placing numbers between 1 and 9 on the board.</Typography>
 						<br></br>
@@ -159,22 +163,25 @@ export default function App({ Component, pageProps }: AppProps) {
 						<Typography textAlign={"left"}>Once a number has been used, it cannot be used again.</Typography>
 						<br></br>
 
-						<Typography textAlign={"left"}>Player 1's objective is to be the first to have three numbers in a row, column, or diagonal that have a sum of 16.</Typography>
+						<Typography textAlign={"left"}>
+							Player 1's objective is to be the first to have three numbers in a row, column, or diagonal that have a sum of 16.
+						</Typography>
 						<br></br>
 
 						<Typography textAlign={"left"}>Player 2 is trying to make their line of three numbers have a sum of 15.</Typography>
 						<br></br>
 
-						<Typography textAlign={"left"}>If all numbers have been used and neither of the rows, columns, nor the diagonals have numbers with a sum of 15 or 16, then it is a draw.</Typography>
+						<Typography textAlign={"left"}>
+							If all numbers have been used and neither of the rows, columns, nor the diagonals have numbers with a sum of 15 or
+							16, then it is a draw.
+						</Typography>
 						<br></br>
 
-						<Typography textAlign={"left"}> If a player places a number in a tile such that two different lines of three are made which results in one having numbers that sum to 16 whilst another having numbers that sum to 15 (simultaneously), then it's - again - a draw.</Typography>
-						<br></br>
-
-						<Typography textAlign={"left"}></Typography>
-						<br></br>
-
-						<Typography textAlign={"left"}></Typography>
+						<Typography textAlign={"left"}>
+							{" "}
+							If a player places a number in a tile such that two different lines of three are made which results in one having
+							numbers that sum to 16 whilst another having numbers that sum to 15 (simultaneously), then it's - again - a draw.
+						</Typography>
 					</Container>
 				</Box>
 			</ThemeProvider>
